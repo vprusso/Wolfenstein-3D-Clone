@@ -3,6 +3,7 @@ import glm
 import pygame as pg
 from texture_id import ID
 
+
 # opengl
 MAJOR_VERSION = 3
 MINOR_VERSION = 3
@@ -14,6 +15,10 @@ WIN_RES = glm.vec2(1280, 720)
 
 # control keys
 KEYS = {
+    'FORWARD_DIR': pg.K_UP,
+    'BACKWARD_DIR': pg.K_DOWN,
+    'LEFT_DIR': pg.K_LEFT,
+    'RIGHT_DIR': pg.K_RIGHT,
     'FORWARD': pg.K_w,
     'BACK': pg.K_s,
     'UP': pg.K_q,

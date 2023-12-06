@@ -34,7 +34,7 @@ class Player(Camera):
         self.health = self.eng.player_attribs.health
         self.ammo = self.eng.player_attribs.ammo
         #
-        self.tile_pos: Tuple[int, int] = None
+        self.tile_pos: tuple[int, int] = None
 
         # weapon
         self.weapons = self.eng.player_attribs.weapons
@@ -192,14 +192,18 @@ class Player(Camera):
         vel = PLAYER_SPEED * self.app.delta_time
         next_step = glm.vec2()
         #
-        if key_state[KEYS['FORWARD']]:
+        if key_state[KEYS['FORWARD']] or key_state[KEYS["FORWARD_DIR"]]:
             next_step += self.move_forward(vel)
-        if key_state[KEYS['BACK']]:
+        if key_state[KEYS['BACK']] or key_state[KEYS["BACKWARD_DIR"]]:
             next_step += self.move_back(vel)
         if key_state[KEYS['STRAFE_R']]:
             next_step += self.move_right(vel)
         if key_state[KEYS['STRAFE_L']]:
             next_step += self.move_left(vel)
+        if key_state[KEYS["LEFT_DIR"]]:
+            self.rotate_yaw(delta_x=-2 * MOUSE_SENSITIVITY)
+        if key_state[KEYS["RIGHT_DIR"]]:
+            self.rotate_yaw(delta_x=2 * MOUSE_SENSITIVITY)
         #
         self.move(next_step=next_step)
 
